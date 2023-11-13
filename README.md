@@ -17,5 +17,5 @@ The frontent, though SPA, it should achieve `100` lighthouse performance score o
 ## 3. Known issues
 
 1. `document` not exist, typecheck not working properly
-    - just `//@ts-ignore` it, there is no hurt
-    - or make it in pure JS, and make a typedef
+   - just `//@ts-ignore` it, there is no hurt
+   - or make it in pure JS, and make a typedef

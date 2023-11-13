@@ -3,16 +3,18 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "fmt": "prettier . -w",
+    "make": "scripts/build.sh"
   },
   "dependencies": {
     "@elysiajs/eden": "^0.7.4",
-    "@elysiajs/static": "^0.7.1",
     "elysia": "^0.7.24"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
   },
   "module": "src/index.js"
 }

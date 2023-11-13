@@ -1,3 +1,5 @@
-export const config = (await (await fetch("/api/prelude.json")).json()) as {
-  endpoint: string;
+export const config = {
+	endpoint: import.meta.env.PROD
+		? import.meta.env.VITE_API_ENDPOINT || ""
+		: "http://localhost:3000",
 };

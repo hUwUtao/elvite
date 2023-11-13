@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rvf dist
+rm -rf dist
 
 mkdir -p dist/bin
 
@@ -11,3 +11,5 @@ cd client
 bun i
 bun run build
 mv dist ../dist/public
+
+# configure
