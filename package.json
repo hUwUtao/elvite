@@ -1,20 +1,49 @@
 {
-  "name": "elvite",
-  "version": "1.0.50",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
-    "fmt": "prettier . -w",
-    "make": "scripts/build.sh"
-  },
+  "cdnDependencies": [
+    "react",
+    "react-dom/client",
+    "react-router-dom",
+    "@sentry/integrations",
+    "@sentry/react"
+  ],
   "dependencies": {
     "@elysiajs/eden": "^0.7.4",
-    "elysia": "^0.7.24"
+    "@loadable/component": "^5.15.3",
+    "@loadable/server": "^5.16.1",
+    "@prisma/client": "5.6.0",
+    "elysia": "^0.7.24",
+    "mysql2": "^3.6.5",
+    "prisma": "^5.6.0",
+    "react-router-dom": "^6.19.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.4.0",
+    "@types/loadable__component": "^5.13.7",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "bun-types": "latest",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.5"
   },
-  "module": "src/index.js"
+  "module": "src/index.js",
+  "name": "elvite",
+  "scripts": {
+    "cli:build": "tsc && vite build",
+    "cli:dev": "vite",
+    "cli:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "cli:prev": "vite preview",
+    "db:nm": "scripts/migration.sh",
+    "dev": "bun run --watch src/server.ts",
+    "fmt": "biome format .  --write",
+    "make": "bun cli:build && bun srv:build",
+    "jfmt": "scripts/fmtjson.sh package.json && scripts/fmtjson.sh biome.json && bun fmt",
+    "srv:build": "bun build --target=bun --minify --compile src/server.ts --sourcemap=external --outfile=.bin && mv src/.bin dist/server.bin",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.50"
 }

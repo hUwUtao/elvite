@@ -1,14 +1,14 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { useTreaty } from "./hooks/treaty";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "/vite.svg?url";
+import { useTreaty } from "../core";
+import "../assets/styles/App.css";
 
-function App() {
+export default function Index() {
 	const [count, setCount] = useState(0);
 	const bmsg = useTreaty(
 		(c) =>
-			c.api[""].get({
+			c[""].get({
 				$query: {
 					n: count.toString(),
 				},
@@ -19,10 +19,10 @@ function App() {
 	return (
 		<>
 			<div>
-				<a href="https://vitejs.dev" target="_blank">
+				<a href="https://vitejs.dev" target="_blank" rel="noreferrer">
 					<img src={viteLogo} className="logo" alt="Vite logo" />
 				</a>
-				<a href="https://react.dev" target="_blank">
+				<a href="https://react.dev" target="_blank" rel="noreferrer">
 					<img src={reactLogo} className="logo react" alt="React logo" />
 				</a>
 			</div>
@@ -32,9 +32,9 @@ function App() {
 				<code>{bmsg?.data?.msg}</code>
 			</div>
 			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
+				<h3>Current count is {count}</h3>
+				<button onClick={() => setCount((c) => (c >= 1 ? c - 1 : 0))}>-</button>
+				<button onClick={() => setCount((c) => c + 1)}>+</button>
 				<p>
 					Edit <code>src/App.tsx</code> and save to test HMR
 				</p>
@@ -45,5 +45,3 @@ function App() {
 		</>
 	);
 }
-
-export default App;
