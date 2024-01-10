@@ -1,2 +1,2 @@
 export { useTreaty } from "./hooks/treaty";
-export { pris } from "./database";
+// export { pris } from "./database";

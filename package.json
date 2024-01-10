@@ -1,49 +1,54 @@
 {
-  "cdnDependencies": [
-    "react",
-    "react-dom/client",
-    "react-router-dom",
-    "@sentry/integrations",
-    "@sentry/react"
-  ],
-  "dependencies": {
-    "@elysiajs/eden": "^0.7.4",
-    "@loadable/component": "^5.15.3",
-    "@loadable/server": "^5.16.1",
-    "@prisma/client": "5.6.0",
-    "elysia": "^0.7.24",
-    "mysql2": "^3.6.5",
-    "prisma": "^5.6.0",
-    "react-router-dom": "^6.19.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.4.0",
-    "@types/loadable__component": "^5.13.7",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "bun-types": "latest",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.5"
-  },
-  "module": "src/index.js",
-  "name": "elvite",
-  "scripts": {
-    "cli:build": "tsc && vite build",
-    "cli:dev": "vite",
-    "cli:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "cli:prev": "vite preview",
-    "db:nm": "scripts/migration.sh",
-    "dev": "bun run --watch src/server.ts",
-    "fmt": "biome format .  --write",
-    "make": "bun cli:build && bun srv:build",
-    "jfmt": "scripts/fmtjson.sh package.json && scripts/fmtjson.sh biome.json && bun fmt",
-    "srv:build": "bun build --target=bun --minify --compile src/server.ts --sourcemap=external --outfile=.bin && mv src/.bin dist/server.bin",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "1.0.50"
+	"cdnDependencies": [
+		"react",
+		"react-dom/client",
+		"react-router-dom",
+		"@sentry/integrations",
+		"@sentry/react"
+	],
+	"dependencies": {
+		"@elysiajs/eden": "^0.7.4",
+		"@elysiajs/static": "^0.8.1",
+		"@loadable/component": "^5.15.3",
+		"@loadable/server": "^5.16.1",
+		"@prisma/client": "latest",
+		"elysia": "^0.7.24",
+		"mysql2": "^3.6.5",
+		"prisma": "latest",
+		"react-router-dom": "^6.19.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.4.0",
+		"@types/loadable__component": "^5.13.7",
+		"@types/react": "^18.2.15",
+		"@types/react-dom": "^18.2.18",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"@vitejs/plugin-react-swc": "^3.5.0",
+		"bun-types": "latest",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-refresh": "^0.4.3",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.5",
+		"vite-plugin-html": "^3.2.1"
+	},
+	"module": "src/index.js",
+	"name": "elvite",
+	"scripts": {
+		"cli:dev": "vite",
+		"cli:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"cli:prev": "vite preview",
+		"build:client": "vite build --ssrManifest --outDir dist/client",
+		"build:server": "VITE_NOCDN=true vite build --ssr src/entry-server.tsx --outDir dist/server",
+		"build": "bun build:client && bun build:server",
+		"start": "NODE_ENV=production bun run src/server.ts",
+		"db:nm": "scripts/migration.sh",
+		"dev": "bun run --watch src/server.ts",
+		"fmt": "biome format .  --write",
+		"make": "bun cli:build && bun srv:build",
+		"jfmt": "scripts/fmtjson.sh package.json && scripts/fmtjson.sh biome.json && bun fmt",
+		"srv:build": "bun build --target=bun --minify --compile src/server.ts --sourcemap=external --outfile=.bin && mv src/.bin dist/server.bin",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"version": "1.0.50"
 }

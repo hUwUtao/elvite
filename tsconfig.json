@@ -19,7 +19,13 @@
 		"noUnusedParameters": false,
 		"noFallthroughCasesInSwitch": true,
 
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["*"],
+			"_/*": ["core/*"],
+			"_": ["core/index"],
+		}
 	},
 	"include": ["src"],
 	"references": [

@@ -7,12 +7,12 @@ import { createHtmlPlugin } from "vite-plugin-html";
 // @ts-ignore
 const isDev = process.env.NODE_ENV !== "production";
 const noCDN = Boolean(
-		// @ts-ignore
-		process.env.VITE_NOCDN,
-	);
+	// @ts-ignore
+	process.env.VITE_NOCDN,
+);
 
 const str = ["DEV Mode", "Force local deps"];
-[isDev, noCDN].map((i, _b) => console.info(`${(i ? "X" : "O")}  ${str[_b]}`));
+[isDev, noCDN].map((i, _b) => console.info(`${i ? "T" : "F"}  ${str[_b]}`));
 
 function aliased(r: Record<string, string>): Alias[] {
 	return Object.keys(r).map((k) => ({
@@ -31,7 +31,11 @@ function esmsh(): Alias[] {
 // https://vitejs.dev/config/
 export default defineConfig({
 	build: {
+		sourcemap: "inline",
 		outDir: "./dist/client",
+		rollupOptions: {
+			external: ["node_modules/react-dom/server"],
+		},
 	},
 	plugins: [
 		react(),
@@ -41,12 +45,11 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: [
-			...(noCDN || isDev
-				? []
-				: aliased({
-						// "@": "/src",
-				  })),
-			...esmsh(),
+			...(noCDN || isDev ? [] : esmsh()),
+			...aliased({
+				"@": "/src",
+				_: "/src/core",
+			}),
 		],
 	},
 });

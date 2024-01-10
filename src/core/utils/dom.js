@@ -1,4 +1,7 @@
 import { hydrateRoot, createRoot } from "react-dom/client";
 
 const q = document.querySelector("draw");
-export const root = (q.getAttribute("h2") === "" ? hydrateRoot : createRoot)(q);
+export const root = (node) =>
+	q.getAttribute("h2") === ""
+		? hydrateRoot(q, node)
+		: createRoot(q).render(node);

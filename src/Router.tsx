@@ -1,14 +1,10 @@
 // import lz from "@loadable/component";
-import { Route, Routes } from "react-router-dom";
-import Index from "./views/Index";
-import Picker from "./views/Picker";
-// const Index = lz(() => import("./pages/Index"));
 
-export default function Router() {
-	return (
-		<Routes>
-			<Route path="/" element={<Index />} />
-			<Route path="/app/city" element={<Picker />} />
-		</Routes>
-	);
-}
+import Router from "./core/modules/router";
+
+const { router, routes } = Router(
+	"/src/views",
+	import.meta.glob("/src/views/**/*.tsx") as any, // weird
+);
+
+export { routes, router };

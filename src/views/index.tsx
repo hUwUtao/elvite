@@ -1,8 +1,8 @@
 import { useState } from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg?url";
-import { useTreaty } from "../core";
-import "../assets/styles/App.css";
+import { useTreaty } from "_";
+import "@/styles/App.css";
 
 export default function Index() {
 	const [count, setCount] = useState(0);

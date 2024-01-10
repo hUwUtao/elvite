@@ -3,6 +3,7 @@ import { edenTreaty } from "@elysiajs/eden";
 
 import type { App } from "../../server";
 import { EdenTreaty } from "@elysiajs/eden/treaty";
+import { config } from "../utils/config";
 
 // const treaty = edenTreaty<App>(config.endpoint);
 
@@ -17,10 +18,14 @@ interface ITreatyProvider {
 	url: string;
 }
 
+function createTreaty(url = config.endpoint) {
+	return edenTreaty<App>(url);
+}
+
 export function TreatyProvider({ children, url }: ITreatyProvider) {
 	return (
 		// @ts-ignore
-		<Treaty.Provider value={edenTreaty<App>(url)}>{children}</Treaty.Provider>
+		<Treaty.Provider value={createTreaty(url)}>{children}</Treaty.Provider>
 	);
 }
 

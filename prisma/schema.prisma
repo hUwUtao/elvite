@@ -9,32 +9,3 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
-model Country {
-  id     Int    @id @db.UnsignedMediumInt
-  name   String @db.Char(64)
-  cities City[]
-}
-
-model City {
-  id        Int        @id @db.UnsignedMediumInt
-  name      String     @db.Char(128)
-  country   Country    @relation(fields: [countryId], references: [id])
-  countryId Int        @db.UnsignedMediumInt
-  district  District[]
-}
-
-model District {
-  id     Int    @id @db.UnsignedMediumInt
-  name   String @db.Char(128)
-  city   City   @relation(fields: [cityId], references: [id])
-  cityId Int    @db.UnsignedMediumInt
-  ward   Ward[]
-}
-
-model Ward {
-  id         Int      @id @db.UnsignedMediumInt
-  name       String   @db.Char(128)
-  district   District @relation(fields: [districtId], references: [id])
-  districtId Int      @db.UnsignedMediumInt
-}

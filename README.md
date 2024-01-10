@@ -2,6 +2,11 @@
 
 The stack that statisfy both backend and frontend developer.
 
+## Goals
+
+- [x] Proper build system
+- [ ] Proper DX
+
 ## 1. Summmary
 
 At the backstage, with the undeniable speed of Bun, and Elysia the main wrap. This template include its convenient interface (named `eden`) for supporting a type-safe development, and this template also have a react-query like hook.
